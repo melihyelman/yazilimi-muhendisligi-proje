@@ -2,10 +2,7 @@ package com.filo.yazilimmuh_filo.service;
 
 import com.filo.yazilimmuh_filo.entity.Expense;
 import com.filo.yazilimmuh_filo.entity.ExpenseType;
-import com.filo.yazilimmuh_filo.entity.Report;
-import com.filo.yazilimmuh_filo.entity.User;
 import com.filo.yazilimmuh_filo.repository.ExpenseRepository;
-import com.filo.yazilimmuh_filo.repository.ReportRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -29,9 +29,6 @@ public class Vehicle {
 
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
     private List<Expense> expenses = new ArrayList<>();
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "forecast_model_id")
-    private ForecastModel forecastModel;
 
     public String getModel() {
         return model;
@@ -111,14 +108,6 @@ public class Vehicle {
 
     public void setLeaseEndDate(LocalDate leaseEndDate) {
         this.leaseEndDate = leaseEndDate;
-    }
-
-    public ForecastModel getForecastModel() {
-        return forecastModel;
-    }
-
-    public void setForecastModel(ForecastModel forecastModel) {
-        this.forecastModel = forecastModel;
     }
 
     public PoolAssignment assignToPool(String mission) {

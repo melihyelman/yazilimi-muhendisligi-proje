@@ -52,7 +52,4 @@ public class EmployeeAssignmentService {
         tripLogService.create(tripLog);
         return repo.save(ea);
     }
-    public List<EmployeeAssignment> findByEmployeeId(Long id) {
-        return (List<EmployeeAssignment>) repo.findByEmployeeId(id);
-    }
 }
