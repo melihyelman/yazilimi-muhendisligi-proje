@@ -72,7 +72,6 @@ export default function EmployeesPage() {
                 <StyledTableCell>Ad</StyledTableCell>
                 <StyledTableCell>Bölüm</StyledTableCell>
                 <StyledTableCell>Kullanıcı Adı</StyledTableCell>
-                {/* İşlemler sütunu sadece admin için */}
                 {isAdmin && <StyledTableCell>İşlemler</StyledTableCell>}
               </TableRow>
             </TableHead>

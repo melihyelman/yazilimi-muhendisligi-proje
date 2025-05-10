@@ -38,7 +38,6 @@ export default function ExpenseEditPage() {
     ]).then(([v, ven, usr, exp]) => {
       setVehicles(v.data);
       setVendors(ven.data);
-      console.log(usr.data);
       setExpense(exp.data);
       setValue('vehicleId', exp.data.vehicle?.id?.toString() || '');
       setValue('vendorId', exp.data.vendor?.id?.toString() || '');

@@ -18,7 +18,6 @@ interface AuthState {
   setAuthFromStorage: () => void;
 }
 
-// login fonksiyonu store dışında tanımlanıyor
 async function loginImpl(username: string, password: string) {
   useAuthStore.setState({ loading: true });
   const res = await api.post('/auth/login', { username, password });

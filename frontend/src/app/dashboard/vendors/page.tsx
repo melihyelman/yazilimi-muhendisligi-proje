@@ -73,7 +73,6 @@ export default function VendorsPage() {
                 <StyledTableCell>Ad</StyledTableCell>
                 <StyledTableCell>Kullanıcı Adı</StyledTableCell>
                 <StyledTableCell>Şirket Adı</StyledTableCell>
-                {/* İşlemler sütunu sadece admin için */}
                 {isAdmin && <StyledTableCell>İşlemler</StyledTableCell>}
               </TableRow>
             </TableHead>
@@ -83,7 +82,6 @@ export default function VendorsPage() {
                   <StyledTableCell>{v.name}</StyledTableCell>
                   <StyledTableCell>{v.username}</StyledTableCell>
                   <StyledTableCell>{v.companyName}</StyledTableCell>
-                  {/* İşlemler sütunu sadece admin için */}
                   {isAdmin && (
                     <StyledTableCell>
                     <Button variant="outlined" color="primary" component={Link}  href={`/dashboard/vendors/${v.id}/edit`}  sx={{ gap: 1, mr:1}} size="small">

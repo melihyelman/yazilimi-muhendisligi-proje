@@ -6,7 +6,6 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  // Sadece /auth endpointleri hariç tüm isteklerde token ekle
   if (!config.url?.startsWith('/auth')) {
     const token = getToken?.();
     if (token) {

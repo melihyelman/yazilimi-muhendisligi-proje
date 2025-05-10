@@ -1,9 +1,3 @@
-# Motorlu Araç Filo Yönetimi - Frontend Talimatnamesi (Next.js)
-
-Bu doküman, proje frontend geliştiricisinin (veya yapay zekanın) uygulamayı doğru mimari ile inşa etmesi için oluşturulmuştur. Proje Next.js 14 App Router ile geliştirilecek olup, Material UI tasarım kütüphanesi kullanılacak, durum yönetimi için Zustand tercih edilecektir.
-
----
-
 ## Genel Teknoloji Yapısı
 
 * **Framework**: Next.js 14 (App Router)
@@ -17,7 +11,7 @@ Bu doküman, proje frontend geliştiricisinin (veya yapay zekanın) uygulamayı 
 
 ## Sayfa ve Dosya Yapısı
 
-```bash
+```
 /app
  ├─ layout.tsx               → Sidebar + Header
  ├─ page.tsx                 → Root: login kontrolü ve yönlendirme
@@ -30,7 +24,6 @@ Bu doküman, proje frontend geliştiricisinin (veya yapay zekanın) uygulamayı 
      ├─ expenses/           → Harcamalar
      ├─ odometers/          → Kilometre verileri
      ├─ trip-logs/          → Kullanıcı mesafeleri
-     ├─ forecast/           → Hareketli Ortalama tahmin ekranı
      └─ reports/            → Raporlar
 /components
  /Sidebar.tsx
@@ -42,14 +35,3 @@ Bu doküman, proje frontend geliştiricisinin (veya yapay zekanın) uygulamayı 
  /api.ts
  /auth.ts
 ```
-
----
-
-## Auth Akışı
-
-* Kullanıcı `/login` ekranından giriş yapar.
-* JWT token localStorage'a yazılır.
-* `/dashboard/*` dizinindeki tüm sayfalar token kontrolü ile korunur.
-* Kullanıcı rolüne göre menü öğeleri dinamik görüntülenir.
-
-AUTH hariç diğer bütün endpointler bearer token ister.

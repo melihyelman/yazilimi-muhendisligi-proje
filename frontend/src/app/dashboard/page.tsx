@@ -18,7 +18,6 @@ import {
 import { styled } from '@mui/material/styles';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-// Kartlar için daha modern bir görünüm
 const StatCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
   textAlign: 'center',
@@ -103,15 +102,12 @@ export default function DashboardPage() {
       setLastExpenses([...exp.data].sort((a, b) => b.id - a.id).slice(0, 5));
       setLastOdometers([...odo.data].sort((a, b) => b.id - a.id).slice(0, 5));
       setLastAssignments([...ea.data, ...pa.data].sort((a, b) => b.id - a.id).slice(0, 5));
-      // Expense type stats
-      console.log([...ea.data, ...pa.data])
       const typeStats: Record<string, number> = {};
       exp.data.forEach((e: any) => {
         if (!typeStats[e.type]) typeStats[e.type] = 0;
         typeStats[e.type] += e.amount || 0;
       });
       setExpenseTypeStats(typeStats);
-      // Monthly expense
       const months: Record<string, number> = {};
       exp.data.forEach((e: any) => {
         if (!e.date) return;
@@ -129,7 +125,6 @@ export default function DashboardPage() {
     <ProtectedRoute>
       <Box p={{ xs: 1, md: 4 }}>
         <Typography variant="h4" mb={4} fontWeight={700} color="#e3e3e3">Filo Genel Durum</Typography>
-        {/* 1. Satır: Stat kartları */}
         <Grid container spacing={3} mb={2}>
           {[
             {
@@ -184,7 +179,6 @@ export default function DashboardPage() {
             </Grid>
           ))}
         </Grid>
-        {/* 2. Satır: Son 5 listeleri */}
         <Grid container spacing={3} mt={4} mb={4}>
           {[
             {
@@ -231,7 +225,6 @@ export default function DashboardPage() {
             </Grid>
           ))}
         </Grid>
-        {/* 3. Satır: Grafikler */}
         <Grid container spacing={3} >
           {[
             {

@@ -63,7 +63,6 @@ export default function FleetReportsPage() {
     api.get('/reports').then(res => setOldReports(res.data));
   }, []);
 
-  // Araç seçimi değişince rapor ve grafik verilerini sıfırla
   useEffect(() => {
     setReports({});
     setOdoData([]);
@@ -76,7 +75,6 @@ export default function FleetReportsPage() {
     setError('');
     try {
       if (vehicleId === 0) {
-        // Tüm araçlar için rapor (query parametre ile gönder)
         const res = await api.post(`/reports?from=${from}&to=${to}`);
         const reportsObj: Record<number, Report> = {};
         let totalDistance = 0;
@@ -97,17 +95,13 @@ export default function FleetReportsPage() {
           totalTrip += r.assignmentCount || 0;
         });
         setReports(reportsObj);
-        // Grafik için toplamları tek bir veri olarak ata
         setOdoData([{ date: `${from} - ${to}`, km: totalDistance }]);
         setExpenseData([{ date: `${from} - ${to}`, amount: totalExpense }]);
       } else {
-        // Tek araç için rapor (query parametre ile gönder)
         const res = await api.post(`/reports/${vehicleId}?from=${from}&to=${to}`);
         setReports(r => ({ ...r, [vehicleId]: res.data }));
-        // Kilometre zaman serisi
         const odoRes = await api.get(`/readings/vehicle/${vehicleId}`);
         setOdoData(odoRes.data.filter((d: any) => new Date(d.date) >= new Date(from) && new Date(d.date) <= new Date(to)));
-        // Harcama zaman serisi
         const expRes = await api.get('/expenses');
         setExpenseData(expRes.data.filter((e: any) => e.vehicleId === vehicleId && new Date(e.date) >= new Date(from) && new Date(e.date) <= new Date(to)));
       }

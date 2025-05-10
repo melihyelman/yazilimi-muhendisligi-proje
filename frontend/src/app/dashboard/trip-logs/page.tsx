@@ -69,7 +69,6 @@ export default function TripLogsPage() {
     );
   });
 
-  // Trip log silme örneği (ekle/düzenle yoksa sadece silme için):
   const handleDelete = async (id: number) => {
     if (confirm('Bu seyahat kaydını silmek istediğinize emin misiniz?')) {
       try {

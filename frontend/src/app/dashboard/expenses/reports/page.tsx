@@ -35,7 +35,7 @@ export default function ExpenseReportsPage() {
   const [forecast, setForecast] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [datePeriod, setDatePeriod] = useState(3); // harcamalar tablosu için
+  const [datePeriod, setDatePeriod] = useState(3); 
   const theme = useTheme();
 
   useEffect(() => {
@@ -49,7 +49,6 @@ export default function ExpenseReportsPage() {
     }).catch(() => setError('Veriler yüklenemedi')).finally(() => setLoading(false));
   }, [datePeriod]);
 
-  // Harcamaları tip ve tarihe göre filtrele
   const now = new Date();
   const filteredExpenses = expenses.filter((e: any) => {
     if (!e.date) return false;
@@ -57,13 +56,11 @@ export default function ExpenseReportsPage() {
     const diffMonth = (now.getFullYear() - expDate.getFullYear()) * 12 + (now.getMonth() - expDate.getMonth());
     return diffMonth < datePeriod;
   });
-  // Harcamaları tip ve yıla göre grupla
   const groupedByType: Record<string, number> = {};
   const groupedByMonth: Record<string, Record<string, number>> = {};
   filteredExpenses.forEach((e: any) => {
     if (!groupedByType[e.type]) groupedByType[e.type] = 0;
     groupedByType[e.type] += e.amount || 0;
-    // Aylık
     const month = e.date ? e.date.slice(0, 7) : '';
     if (month) {
       if (!groupedByMonth[month]) groupedByMonth[month] = {};

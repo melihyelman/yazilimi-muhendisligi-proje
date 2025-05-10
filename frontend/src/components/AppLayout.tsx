@@ -10,15 +10,9 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SpeedIcon from '@mui/icons-material/Speed';
-import TimelineIcon from '@mui/icons-material/Timeline';
 import AssessmentIcon from '@mui/icons-material/Assessment';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import Collapse from '@mui/material/Collapse';
-import api from '../services/api';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Avatar from '@mui/material/Avatar';
 
 const drawerWidth = 220;
 
@@ -29,7 +23,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const role = user?.role;
   const logout = useAuthStore((s) => s.logout);
 
-  // Auth persist: sayfa yenilendiğinde token ve user'ı store'a yükle
   const fetchUser = useAuthStore((s) => s.fetchUser);
   useEffect(() => {
     fetchUser();
@@ -39,14 +32,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     logout();
     router.push('/login');
   };
-
-  // Dinamik menü state'leri
-  const [vehicles, setVehicles] = useState<any[]>([]);
-  const [openVehicles, setOpenVehicles] = useState(false);
-
-  useEffect(() => {
-    api.get('/vehicles').then(res => setVehicles(res.data)).catch(() => setVehicles([]));
-  }, []);
 
   if (!user) {
     return <>{children}</>;
@@ -86,14 +71,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 <ListItemText primary="Araçlar" sx={{ ml: 2 }} />
               </ListItemButton>
             </ListItem>
-            {/* Çalışanlar ana menü, sadece tüm çalışanlar */}
             <ListItem disablePadding>
               <ListItemButton component={Link} href="/dashboard/employees" selected={pathname === '/dashboard/employees'}>
                 <AssignmentIndIcon />
                 <ListItemText primary="Çalışanlar" sx={{ ml: 2 }} />
               </ListItemButton>
             </ListItem>
-            {/* Tedarikçiler ana menü, sadece tüm tedarikçiler */}
             <ListItem disablePadding>
               <ListItemButton component={Link} href="/dashboard/vendors" selected={pathname === '/dashboard/vendors'}>
                 <AssignmentIndIcon />

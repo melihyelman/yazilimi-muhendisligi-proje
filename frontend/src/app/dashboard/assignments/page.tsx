@@ -72,7 +72,6 @@ export default function AssignmentsPage() {
       api.get('/employee-assignments'),
       api.get('/pool-assignments')
     ]).then(([ea, pa]) => {
-      // Employee assignments: doğrudan objeden oku
       const employeeAssignments = ea.data.map((a: any) => ({
         ...a,
         vehiclePlate: a.vehicle?.plateNumber || '-',
@@ -80,7 +79,6 @@ export default function AssignmentsPage() {
         type: 'employee',
         status: a.approved === true ? 'APPROVED' : a.approved === false ? 'REJECTED' : 'PENDING',
       }));
-      // Pool assignments: doğrudan objeden oku
       const poolAssignments = pa.data.map((a: any) => ({
         ...a,
         vehiclePlate: a.vehicle?.plateNumber || '-',

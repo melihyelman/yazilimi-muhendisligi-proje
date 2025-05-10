@@ -43,7 +43,6 @@ export default function ExpensesPage() {
     api.get('/expenses')
       .then(res => {
         setExpenses(res.data);
-        console.log(res.data);
       })
       .catch(() => setError('Harcamalar yüklenemedi'))
       .finally(() => setLoading(false));
