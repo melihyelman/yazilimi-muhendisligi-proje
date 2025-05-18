@@ -69,7 +69,6 @@ public class ForecastServiceTest {
     public void testGenerateExpenseForecast_ThreeMonthPeriod() {
         Map<ExpenseType, Double> forecast = forecastService.generateExpenseForecast(3);
         
-        // Assert
         assertTrue(forecast.containsKey(ExpenseType.FUEL), "Forecast should contain FUEL expenses");
         assertTrue(forecast.containsKey(ExpenseType.MAINTENANCE), "Forecast should contain MAINTENANCE expenses");
         assertTrue(forecast.containsKey(ExpenseType.INSURANCE), "Forecast should contain INSURANCE expenses");
